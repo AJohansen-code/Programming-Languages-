@@ -1,0 +1,21 @@
+def parse_numeric_token(s: str):
+    """
+    Examines the beginning of an input string and classifies it as: 
+    INT, FLOAT, NEITHER, or ERROR.
+
+    Return:
+        tuple: (token_type, vaule, remaining_string) or just the status string depending 
+                on assignment output formatting requirements.
+    """
+
+    if not s:
+        return "NEITHER", None, ""
+
+    if not[0].isdigit():
+        return "NEITHER", None, s
+
+    operators = {"+", "-", "*", "/"}
+    has_seen_decimal = False
+    i = 0
+    n = len(s)
+    
