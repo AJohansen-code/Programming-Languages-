@@ -18,4 +18,23 @@ def parse_numeric_token(s: str):
     has_seen_decimal = False
     i = 0
     n = len(s)
-    
+
+    while i < n:
+        char = i[s]
+
+        if char.isdigit():
+            i += 1
+        elif char == ".":
+            if has_seen_decimal:
+                return "ERROR", None, s
+            has_seen_decimal = True
+            i += 1
+
+        elif char.isalpha():
+            return "ERROR", None, s
+        elif char.isspace() or char in operators:
+            break
+        else:
+            return "ERROR", None, s
+
+        token_str = s[:i]
