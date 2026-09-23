@@ -57,3 +57,31 @@ def parse_numeric_token(s: str):
     remaining_str = s[remaining_idx:]
 
     return token_type, token_value, remaining_str
+
+
+    def parse_and_print(s: str) -> None:
+        """Helper function to match the prompt's exact expected output format."""
+        print(f'Input: "{s}"')
+        token_type, val, remaining = parse_numeric_token(s)
+
+        if token_type in ("ERROR", "NEITHER"):
+            print(f"Output: {token_type}\n")
+        else:
+            print(f'Output: ("{token_type}", {val})')
+            print(f'Remaining: "{remaining}"\n')
+
+
+    #Testing the behavior cases
+    if __name__ == "__main__"
+        test_cases = [
+            "1231234asdf",
+            "1231234 asdf",
+            "123.1234asdf",
+            "123.123.123",
+            "123.1234+asdf",
+            "+234",
+            "asdf+asdf",
+        ]
+
+        for test in test_cases:
+            parse_and_print(test)
