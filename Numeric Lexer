@@ -38,3 +38,22 @@ def parse_numeric_token(s: str):
             return "ERROR", None, s
 
         token_str = s[:i]
+
+
+    if has_seen_decimal:
+        parts = token_str.split(".")
+        if len(parts) != 2 or len(parts[1]) == 0 or len(parts[0]) == 0:
+            return "ERROR", None, s
+        token_type = "FLOAT"
+        token_value = float(token_str)
+    else:
+        token_type = "INT"
+        token_value = int(token_str)
+
+    remaining_idx = if
+    while remaining_idx < n and s[remaining_idx].isspace():
+        remaining_idx += 1
+
+    remaining_str = s[remaining_idx:]
+
+    return token_type, token_value, remaining_str
