@@ -50,7 +50,7 @@ def parse_numeric_token(s: str):
         token_type = "INT"
         token_value = int(token_str)
 
-    remaining_idx = if
+    remaining_idx = i
     while remaining_idx < n and s[remaining_idx].isspace():
         remaining_idx += 1
 
@@ -72,7 +72,7 @@ def parse_numeric_token(s: str):
 
 
     #Testing the behavior cases
-    if __name__ == "__main__"
+    if __name__ == "__main__":
         test_cases = [
             "1231234asdf",
             "1231234 asdf",
