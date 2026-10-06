@@ -11,7 +11,7 @@ def parse_numeric_token(s: str):
     if not s:
         return "NEITHER", None, ""
 
-    if not[0].isdigit():
+    if not s[0].isdigit():
         return "NEITHER", None, s
 
     operators = {"+", "-", "*", "/"}
@@ -20,7 +20,7 @@ def parse_numeric_token(s: str):
     n = len(s)
 
     while i < n:
-        char = i[s]
+        char = s[i]
 
         if char.isdigit():
             i += 1
@@ -42,7 +42,7 @@ def parse_numeric_token(s: str):
 
     if has_seen_decimal:
         parts = token_str.split(".")
-        if len(parts) != 2 or len(parts[1]) == 0 or len(parts[0]) == 0:
+        if len(parts) != 2 or len(parts[0]) == 0 or len(parts[1]) == 0:
             return "ERROR", None, s
         token_type = "FLOAT"
         token_value = float(token_str)
