@@ -1,11 +1,7 @@
 def parse_numeric_token(s: str):
-    """
-    Examines the beginning of an input string and classifies it as: 
-    INT, FLOAT, NEITHER, or ERROR.
+    """Examines the beginning of an input string and classifies it as:
 
-    Return:
-        tuple: (token_type, vaule, remaining_string) or just the status string depending 
-                on assignment output formatting requirements.
+    INT, FLOAT, NEITHER, or ERROR.
     """
 
     if not s:
@@ -36,7 +32,8 @@ def parse_numeric_token(s: str):
         else:
             return "ERROR", None, s
 
-        token_str = s[:i]
+    # This belongs outside the while loop:
+    token_str = s[:i]
 
     if has_seen_decimal:
         parts = token_str.split(".")
@@ -57,29 +54,29 @@ def parse_numeric_token(s: str):
     return token_type, token_value, remaining_str
 
 
-    def parse_and_print(s: str) -> None:
-        """Helper function to match the prompt's exact expected output format."""
-        print(f'Input: "{s}"')
-        token_type, val, remaining = parse_numeric_token(s)
+# Notice these are now at column 0 (outside the function above)
+def parse_and_print(s: str) -> None:
+    """Helper function to match the prompt's exact expected output format."""
+    print(f'Input:  "{s}"')
+    token_type, val, remaining = parse_numeric_token(s)
 
-        if token_type in ("ERROR", "NEITHER"):
-            print(f"Output: {token_type}\n")
-        else:
-            print(f'Output: ("{token_type}", {val})')
-            print(f'Remaining: "{remaining}"\n')
+    if token_type in ("ERROR", "NEITHER"):
+        print(f"Output: {token_type}\n")
+    else:
+        print(f'Output: ("{token_type}", {val})')
+        print(f'Remaining: "{remaining}"\n')
 
 
-    #Testing the behavior cases
-    if __name__ == "__main__":
-        test_cases = [
-            "1231234asdf",
-            "1231234 asdf",
-            "123.1234asdf",
-            "123.123.123",
-            "123.1234+asdf",
-            "+234",
-            "asdf+asdf",
-        ]
+if __name__ == "__main__":
+    test_cases = [
+        "1231234asdf",
+        "1231234 asdf",
+        "123.1234asdf",
+        "123.123.123",
+        "123.1234+asdf",
+        "+234",
+        "asdf+asdf",
+    ]
 
-        for test in test_cases:
-            parse_and_print(test)
+    for test in test_cases:
+        parse_and_print(test)
