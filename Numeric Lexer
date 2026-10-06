@@ -29,7 +29,6 @@ def parse_numeric_token(s: str):
                 return "ERROR", None, s
             has_seen_decimal = True
             i += 1
-
         elif char.isalpha():
             return "ERROR", None, s
         elif char.isspace() or char in operators:
@@ -38,7 +37,6 @@ def parse_numeric_token(s: str):
             return "ERROR", None, s
 
         token_str = s[:i]
-
 
     if has_seen_decimal:
         parts = token_str.split(".")
