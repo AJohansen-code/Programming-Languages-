@@ -32,9 +32,5 @@ Docker Desktop for Windows manages WSL2 automatically, so you do **not** need to
 ## Test inputs (what each file covers)
 ## Output format (LABEL lexeme; EOF / NEWLINE / INDENT notes)
 ## AI / assistance
-   - Restart your PC, then [download and install Docker Desktop](https://www.docker.com/products/docker-desktop/).
-   - In Docker Desktop → Settings → General, make sure **"Use the WSL 2 based engine"** is checked.
-
-  ```bash
-  docker compose run --rm build sh -c "./gradlew connectedDebugAndroidTest --no-daemon"
+pose run --rm build sh -c "./gradlew connectedDebugAndroidTest --no-daemon"
   ```
