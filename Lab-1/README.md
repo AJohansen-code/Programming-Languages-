@@ -25,6 +25,13 @@ Docker Desktop for Windows manages WSL2 automatically, so you do **not** need to
      ```powershell
      wsl --install
      ```
+## Language name and summary
+## EBNF (or link to GRAMMAR.md)
+## Environment
+## Run
+## Test inputs (what each file covers)
+## Output format (LABEL lexeme; EOF / NEWLINE / INDENT notes)
+## AI / assistance
    - Restart your PC, then [download and install Docker Desktop](https://www.docker.com/products/docker-desktop/).
    - In Docker Desktop → Settings → General, make sure **"Use the WSL 2 based engine"** is checked.
 
