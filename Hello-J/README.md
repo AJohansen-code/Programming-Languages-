@@ -4,6 +4,16 @@
 
 ## Task 1: Prediction and Results 
 
+|Expression | Prediction | Results | Notes/ Rules tested |
+|---|---|---|---|
+| '2 * 3 + 4' | 14 |  |  |
+| '10 - 4 - 3' | 9 |  |  |
+| '(10 - 4) - 3' | 3 |  |  |
+| '2 ^ 3 ^ 2' | 512 |  |  |  |
+| '# 3 1 4 1 5' | 5 |  |  |
+| '2 # 3 1 4' | 3 3 1 1 4 4 |  |  |  | 
+| '+/ 3 1 4 1 5' | 14 |  |  |  |
+
 
 ## Reflection
 
