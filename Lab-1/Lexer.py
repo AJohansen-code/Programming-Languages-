@@ -1,58 +1,70 @@
-import enum
-import re
-from typing import List, NamedTuple, Optional
+import sys
+from enum import Enum, auto
+from typing import Any, List
 
-class TokenType(enum.Enum):
+class TokenType(Enum):
     # Literals
-    INT = "INT"
-    FLOAT = "FLOAT"
-    STRING = "STRING"
-    IDENTIFIER = "IDENTIFIER"
-    KEYWORD = "KEYWORD"
+    INT = auto()
+    FLOAT = auto()
+    STRING = auto()
+    IDENTIFIER = auto()
 
     # Operators
-    ASSIGN = "="
-    Minus = "-"
-    STAR = "+"
-    SLASH = "/"
-    MODULO = "%"
-    NOT = "!"
-    NEQ = "!="
-    EQ = "="
-    LT = "<"
-    LTE = "<="
-    GT = ">"
-    GTE = ">="
-    AND = "&&"
-    OR = "||"
+    ASSIGN = auto() #"="
+    MINUS = auto()  #"-"
+    PLUS = auto()   #"+"
+    SLASH = auto()  #"/"
+    STAR = auto()   #"*"
+    MODULO = auto() #"%"
+    NOT = auto()    #"!"
+    NEQ = auto()    #"!="
+    EQ = auto()     #"=="
+    LT = auto()     #"<"
+    LTE = auto()    #"<="
+    GT = auto()     #">"
+    GTE = auto()    #">="
+    AND = auto()    #"&&"
+    OR =  auto()    #"||"
 
     # Punctuation
-    LPAREN = "("
-    RPAREN = ")"
-    LBRACKET = "["
-    RBRACKET = "]"
-    LBRACE = "{"
-    RBRACE = "}"
-    SEMICOLON =";"
-    COMMA = ","
-    EOF = "EOF"
+    LPAREN = auto() #"("
+    RPAREN = auto() #")"
+    LBRACKET = auto() #"["
+    RBRACKET = auto() #"]"
+    LBRACE = auto() #"{"
+    RBRACE = auto() #"}"
+    SEMICOLON = auto() #";"
+    COMMA = auto() #","
 
-    KEYWORDS = {
-       "return" , "let", "fun", "if", "true", "false", "while", "print", "else"
-    }
+    EOF = auto() 
 
-    class Token(NamedTuple):
-        type: TokenType
-        vaule: any
-        line: int
-        column: int
+    #Keywords
+    LET = auto()
+    FUN = auto()
+    RETURN = auto()
+    ELSE = auto()
+    WHILE = auto()
+    IF = auto()
+    TRUE = auto()
+    FALSE = auto()
+    PRINT = auto()
+    
+
+    class Token:
+        def __init__(self, token_type: TokenType, lexeme: str, literal: Any, line: int, column: int ):
+            self.type = token_type
+            self.lexeme = lexeme
+            self.literal = literal
+            self.line = line
+            self.column = column
 
         def __repr__(self) -> str:
-            return f"Token({self.type.name}, {self.vaule!r}, line={self.line}, col={self.column})"
+            val_str = f" ({self.literal!r})" if self.literal is not None else ""
+            return f"Token({self.type.name}, '{self.lexeme}'{val_str}, at {self.line}:{self.column})"
 
     class LexerError(Exception):
         def __init__(self, message: str, line: int,  column: int):
-            super().__init__(f"LexerError at line {line}, col {column}: {message}")
+            super().__init__(f"LexerError at {line}:{column}: {message}")
             self.line = line
             self.column = column
 
