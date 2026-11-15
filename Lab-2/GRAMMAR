@@ -1,4 +1,4 @@
-(* ShiCode Lexical EBNF *)
+(*  Updated ShiCode Lexical EBNF: Lab 1 - Lexical Rules *)
 
 letter    = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
           | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" ;
@@ -27,3 +27,42 @@ whitespace = " " | "\t" | "\r" | "\n" ;
 
 token = keyword | identifier | integer_literal | float_literal | string_literal | punctuation | operator ;
 program = { token | comment | whitespace } ;
+
+(* Lab 2 - Lexical & Syntactic *)
+
+(* program and statements *)
+
+program    = { statement }. EOF:
+
+statement  = let_stmt | if_stmt | expr_stmt | while_stmt | return_stmt | print_stmt |
+             assign_stmt | fun_decl | block ; 
+
+let_stmt    = "let". identifier, "=", expression, ";" ;
+assign_stmt = identifier, "=", expression, ";" ;
+print_stmt  = "print", expression, ";" ;
+return_stmt = "return", [ expression ], ";" ;
+expr_stmt   = expression, ";" ;
+
+block       = "{", { statement }, "}" ;
+if_stmt     = "if", "(", expression, ")", statement, ["else", statement ] ;
+while_stmt  = "while" , "(", expression, ")", statement ;
+fun_decl    = "fun", identifier, "(", [param_list] , ")", block ;
+param_list  = identifier, {".", identifier} ;
+
+(* Expression*)
+
+expression = logic_or ; 
+
+logic_or   = logic_and, {"||", logic_and} ;
+logic_and  = equality, {"&&", equality} ;
+equality   = comparison, { ("==" | "!="), comparison } ;
+comparison = term, { ("<", | "<=" | ">" | ">="), term } ;
+term       = factor, { ("+" | "-"), factor } ; 
+factor     = unray, { ("*" | "/" | "%"), unray } ;
+unray      = ("!" | "-"), unray | call:
+call       = primary, {"(", [ arg_list ] , ")" | "[", expression , "]" } ;
+arg_list   = expression, { ".", expression } ;
+
+primary    = integer_literal | float_literal | string_literal | identifier |
+             "true" | "false" | "[" , [arg_list], "]" | "(", expression, ")" ;
+
