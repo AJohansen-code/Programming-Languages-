@@ -4,6 +4,9 @@
 This program is ran locally using VS Code, As I had to download the J Software due to GitHub issues (which is no issues as this made sure the languages was working correctly). Software is in J 9.7 version with VS Code J extensions.
 The scrip are verified using 'jconsole tasks.ijs' in the terminal. Interactive predictions were evaluated in `jconsole`.
 
+## AI / assistance
+Through out this lab project I had Gemini and the Chat function in VSC. There used to help fix errors within the code while also clarifying j array grammar, and breaking down the 3 verb fork. I also tested to make sure that the code was working correctly.
+
 ## Task 1: Prediction and Results 
 
 |Expression | Prediction | Results | Notes/ Rules tested |
