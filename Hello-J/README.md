@@ -28,7 +28,7 @@ I had a hard time trying to wrap my head around this language as first. The bigg
 - The J language maximizes its writability for array manipulations very easy to write. While other languages usually uses loops, counters and an index tracking, J language takes just a few characters, For example ; in the seventh expression '+/ 3 1 4 1 5', it is adding up the numbers. You can easily do tasks like averaging numbers or filtering data in just 3 to 7 characters without declaring variables or setting up iterators.
     
 *Gives up Readability.
-- The negative side from being easy to write is that it difficult to read J language. The reason is due to have heavily relies on short punctuation characters, hidden arguments, and strict reading from right to left in math. Unless you are familiar with the way array is structured, it is very difficult to read the code. 
+- The negative side from being easy to write is that it difficult to read J language. The reason is due to have heavily relies on short punctuation characters, hidden arguments, and strict reading from right to left in math. Unless you are familiar with the way array is structured, it is very difficult to read the code.  
 
 ### 3. How would you write above in a language you know, and what would be different?
 I would write 'above' in Python using a genorator expression inside 'sum()'. The reason for choosing is due to how similar the written using a list of comprehensions and/ or standard loops.
@@ -39,6 +39,5 @@ def above(scores):
     avg_score = sum(scores) / len(scores)
     return sum(1 for s in scores if s > avg_score)
 
-## AI / assistance
-Through out this lab project I had Gemini and the Chat function in VSC. There used to help fix errors within the code while also clarifying j array grammar, and breaking down the 3 verb fork. I also tested to make sure that the code was working correctly.  
+
     
