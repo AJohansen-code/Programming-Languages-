@@ -13,7 +13,7 @@ The scrip are verified in the editor VS Code play button and directly via `.devc
 | '(25 - 4) - 3' | 18 | 18 | The parentheses explicit groups forces overrides the right to left order '(25 - 4) = 21' resulting it to be '21 - 3 = 18' |
 | '2 ^ 3 ^ 2' | 512 | 512 | It evaluates the order of exponenties from right to left '2 ^ 3 = 9' then becomes '2 ^ 9 = 512' |
 | '# 2 5 9 7 8 1 0 3 ' | 8 | 8 | the '#' tally counts all the numbers in the list |
-| '3 # 4 2 0' | 0 | 4 4 4 2 2 2 0 0 0 | the '#' dyadic replicates each of the number on the list from the right to left 3 times. I made the misunderstood and assumed it was identifying the number placement in the list | 
+| '3 # 4 2 0' | 0 | 4 4 4 2 2 2 0 0 0 | the '#' dyadic replicates each of the number on the list from the right to left 3 times. I misunderstood the expression and assumed it was identifying the number placement in the list | 
 | '+/ 3 1 4 1 5' | 14 | 14 | the adverb '/' that insert '+' between the numbers list makes the order a sum which is where we get '3 + 1 + 4 + 1 + 5 = 14'  |
 
 
