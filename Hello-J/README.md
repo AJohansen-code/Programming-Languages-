@@ -37,4 +37,7 @@ Here is a written example:
 def above(scores):
     avg_sum = sum(scores) / len(score)
     return sum(1 for s in scores if s > avg)
+
+## AI / assistance
+Through out this lab project I had Gemini and the Chat function in VSC. There used to help fix errors within the code while also clarifying j array grammar, and breaking down the 3 verb fork. I also tested to make sure that the code was working correctly.  
     
