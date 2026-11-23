@@ -2,6 +2,8 @@ import sys
 from typing import List, Optional
 from lexer import Lexer, LexerError, Token, TokenType
 
+if hasattr(sys.stdout, "reconfigure"):
+      sys.stdout.reconfigure(encoding="utf-8")
 
 class ParseError(Exception):
       def __init__(self, expected: str, found_token: Token):
@@ -65,7 +67,7 @@ class Parser:
             statements: List[ASTNode] = []
             while not self._is_at_end():
                   statements.append(self._statement())
-            return ASTNode("program", children=statements)
+            return ASTNode("Program", children=statements)
 
       # --- Statements
 
@@ -211,26 +213,26 @@ class Parser:
 
       def _term(self) -> ASTNode:
             expr = self._factor()
-            while self._match(TokenType.SLASH, TokenType.STAR, TokenType.PRECENT):
+            while self._match(TokenType.PLUS, TokenType.MINUS):
+                  op = self._previous().lexeme
+                  right = self._factor()
+                  expr = ASTNode("BinOp", vaule=op, children=[expr, right])
+            return expr
+
+      def _factor(self) -> ASTNode:
+            expr = self._unary()
+            while self._match(TokenType.STAR, TokenType.SLASH, TokenType.PERCENT):
                   op = self._previous().lexeme
                   right = self._unary()
                   expr = ASTNode("BinOp", vaule=op, children=[expr, right])
             return expr
 
-      def _factor(self) -> ASTNode:
-            expr = self._logic_and()
-            while self._match(TokenType.OR):
-                  op = self._previous().lexeme
-                  right = self._logic_and()
-                  expr = ASTNode("BinOp", vaule=op, children=[expr, right])
-            return expr
-
       def _unary(self) -> ASTNode:
-            if self._match(TokenType.Minus, TokenType. BANG):
+            if self._match(TokenType.MINUS, TokenType. BANG):
                   op = self._previous().lexeme
-                  right = self._logic_and()
-                  expr = ASTNode("BinOp", vaule=op, children=[expr, right])
-            return expr
+                  operand = self._unary()
+                  return ASTNode("UnaryOp", vaule=op, children=[operand])
+            return self._call()
 
       def _call(self) -> ASTNode:
              expr = self._primary()
@@ -242,7 +244,7 @@ class Parser:
                                while self._match(TokenType.COMMA):
                                      args.append(self._expression())
                          self._consume(TokenType.RPAREN, "')' after arguments")
-                         expr = ASTNode("call", children=[expr] + args)
+                         expr = ASTNode("Call", children=[expr] + args)
                    elif self._match(TokenType.LBRACKET):
                          index_expr = self._expression()
                          self._consume(TokenType.RBRACKET, "']' after index expression")
@@ -333,33 +335,33 @@ class Parser:
             return self.tokens[self.current -1]
 
       def parse_source(source: str) -> str:
-          tokens = Lexer(source).tokenize()
-          ast = Parser(tokens).parse()  
-          return ast.format_tree()
+        tokens = Lexer(source).tokenize()
+        ast = Parser(tokens).parse()
+        return ast.format_tree()
 
-      if __name__ == "__main__":
-            if len(sys.argv) < 2:
-                  print("Usage: python parser.py <source_file> [--tokens]", file=sys.stderr)
-                  sys.exit(1)
 
-            filepath = sys.argv[1]
-            show_tokens = "--tokens" in sys.argv[2:]
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python parser.py <source_file> [--tokens]", file=sys.stderr)
+        sys.exit(1)
 
-            with open(filepath, "r", encoding="utf-8") as f:
-                  source_code = f.read()
+    filepath = sys.argv[1]
+    show_tokens = "--tokens" in sys.argv[2:]
 
-            try:
-                  tokens = Lexer(source_code).tokenize()
-                  if show_tokens:
-                        for tok in tokens:
-                              print(tok)
-                  else:
-                        tree = Parser(tokens).parse()
-                        print(tree.format_tree())
-            except (LexerError, ParseError) as err:
-                  print(err)
-                  sys.exit(1)
-                      
+    with open(filepath, "r", encoding="utf-8") as f:
+        source_code = f.read()
+
+    try:
+        tokens = Lexer(source_code).tokenize()
+        if show_tokens:
+            for tok in tokens:
+                print(tok)
+        else:
+            tree = Parser(tokens).parse()
+            print(tree.format_tree())
+    except (LexerError, ParseError) as err:
+        print(err)
+        sys.exit(1)
 
             
       
