@@ -3,10 +3,11 @@ import os
 import subprocess
 import sys
 
+
 def main() -> None:
-    input_files = sorted(glob.glob(os.path.join("test", "*.input.txt")))
+    input_files = sorted(glob.glob(os.path.join("tests", "*.input.txt")))
     if not input_files:
-        print("No test files were found in the test/*.input.txt")
+        print("No test files were found in tests/*.input.txt")
         sys.exit(1)
 
     passed = 0
@@ -14,10 +15,10 @@ def main() -> None:
 
     for input_path in input_files:
         expected_path = input_path.replace(".input.txt", ".expected.txt")
-        test_name = os.path.basename(input_path).replace(".inpur.txt", "")
+        test_name = os.path.basename(input_path).replace(".input.txt", "")
 
         if not os.path.exists(expected_path):
-            print(f"[Missing Expected] {test_name}")
+            print(f"[MISSING EXPECTED] {test_name}")
             failed += 1
             continue
 
@@ -28,22 +29,26 @@ def main() -> None:
             [sys.executable, "parser.py", input_path],
             capture_output=True,
             text=True,
-            encoding="utf-8", 
-            )
+            encoding="utf-8",
+        )
         actual_output = result.stdout.rstrip("\r\n")
 
         if actual_output == expected_output:
-            print(f"[Pass] {test_name}")
+            print(f"[PASS] {test_name}")
             passed += 1
         else:
-            print(f"[Fail] {test_name}")
+            print(f"[FAIL] {test_name}")
             print("  Expected:")
             for line in expected_output.splitlines():
-                print("  {line}")
-                print("  Actual:")
+                print(f"    {line}")
+            print("  Actual:")
             for line in actual_output.splitlines():
-                print(f"{line}")
-                failed += 1
+                print(f"    {line}")
+            if result.stderr:
+                print("  Stderr:")
+                for line in result.stderr.splitlines():
+                    print(f"    {line}")
+            failed += 1
 
     print(f"\nSummary: {passed} passed, {failed} failed out of {passed + failed} tests.")
     sys.exit(1 if failed else 0)
