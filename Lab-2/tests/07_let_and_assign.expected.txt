@@ -1,0 +1,7 @@
+Program
+├── Let x
+│   └── Int 1
+└── Assign x
+    └── BinOp +
+        ├── Var x
+        └── Int 2

@@ -1,0 +1,17 @@
+Program
+└── Print
+    └── BinOp ||
+        ├── BinOp ==
+        │   ├── BinOp <
+        │   │   ├── Var a
+        │   │   └── Var b
+        │   └── BinOp >=
+        │       ├── Var c
+        │       └── Var d
+        └── BinOp &&
+            ├── BinOp !=
+            │   ├── Var e
+            │   └── Var f
+            └── BinOp <=
+                ├── Var g
+                └── Var h

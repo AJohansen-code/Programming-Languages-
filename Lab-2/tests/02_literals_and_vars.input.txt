@@ -1,0 +1,6 @@
+let a = 0;
+let b = 3.14e-2;
+let c = "hi";
+let d = true;
+let e = false;
+print a;

@@ -1,0 +1,13 @@
+Program
+├── Let a
+│   └── Int 0
+├── Let b
+│   └── Float 3.14e-2
+├── Let c
+│   └── String "hi"
+├── Let d
+│   └── Bool true
+├── Let e
+│   └── Bool false
+└── Print
+    └── Var a

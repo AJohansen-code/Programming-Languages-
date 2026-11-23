@@ -1,0 +1,38 @@
+Program
+├── FunDecl factorial
+│   ├── Params
+│   │   └── Param n
+│   └── Block
+│       ├── Let result
+│       │   └── Int 1
+│       ├── While
+│       │   ├── BinOp >
+│       │   │   ├── Var n
+│       │   │   └── Int 1
+│       │   └── Block
+│       │       ├── If
+│       │       │   ├── BinOp ==
+│       │       │   │   ├── BinOp %
+│       │       │   │   │   ├── Var n
+│       │       │   │   │   └── Int 2
+│       │       │   │   └── Int 0
+│       │       │   ├── Block
+│       │       │   │   └── Assign result
+│       │       │   │       └── BinOp *
+│       │       │   │           ├── Var result
+│       │       │   │           └── Var n
+│       │       │   └── Block
+│       │       │       └── Assign result
+│       │       │           └── BinOp *
+│       │       │               ├── Var result
+│       │       │               └── Var n
+│       │       └── Assign n
+│       │           └── BinOp -
+│       │               ├── Var n
+│       │               └── Int 1
+│       └── Return
+│           └── Var result
+└── Print
+    └── Call
+        ├── Var factorial
+        └── Int 5

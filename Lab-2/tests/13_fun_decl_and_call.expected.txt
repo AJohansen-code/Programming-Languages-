@@ -1,0 +1,18 @@
+Program
+├── FunDecl add
+│   ├── Params
+│   │   ├── Param a
+│   │   └── Param b
+│   └── Block
+│       └── Return
+│           └── BinOp +
+│               ├── Var a
+│               └── Var b
+└── Print
+    └── Call
+        ├── Var add
+        ├── Int 2
+        └── Call
+            ├── Var add
+            ├── Int 3
+            └── Int 4

@@ -1,0 +1,10 @@
+Program
+└── While
+    ├── BinOp <
+    │   ├── Var i
+    │   └── Int 10
+    └── Block
+        └── Assign i
+            └── BinOp +
+                ├── Var i
+                └── Int 1

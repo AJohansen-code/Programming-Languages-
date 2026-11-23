@@ -1,0 +1,13 @@
+Program
+├── Print
+│   └── BinOp *
+│       ├── BinOp +
+│       │   ├── Int 2
+│       │   └── Int 3
+│       └── Int 4
+└── Print
+    └── BinOp *
+        ├── BinOp +
+        │   ├── Int 2
+        │   └── Int 3
+        └── Int 4

@@ -1,0 +1,16 @@
+Program
+├── Print
+│   └── UnaryOp -
+│       └── Var x
+├── Print
+│   └── UnaryOp -
+│       └── UnaryOp -
+│           └── Int 5
+└── Print
+    └── BinOp &&
+        ├── UnaryOp !
+        │   └── Var flag
+        └── BinOp <
+            ├── UnaryOp -
+            │   └── Var x
+            └── Int 0

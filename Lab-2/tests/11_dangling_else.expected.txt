@@ -1,0 +1,9 @@
+Program
+└── If
+    ├── Var a
+    └── If
+        ├── Var b
+        ├── Print
+        │   └── Int 1
+        └── Print
+            └── Int 2

@@ -1,0 +1,7 @@
+Program
+└── Let x
+    └── BinOp +
+        ├── Int 2
+        └── BinOp *
+            ├── Int 3
+            └── Int 4

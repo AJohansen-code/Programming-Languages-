@@ -1,0 +1,8 @@
+Program
+└── If
+    ├── BinOp >
+    │   ├── Var x
+    │   └── Int 0
+    └── Block
+        └── Print
+            └── Var x

@@ -1,0 +1,11 @@
+Program
+├── Let xs
+│   └── Array
+│       ├── Int 10
+│       └── Int 20
+└── Print
+    └── Index
+        ├── Var xs
+        └── BinOp +
+            ├── Int 0
+            └── Int 1
